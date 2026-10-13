@@ -1,10 +1,8 @@
-/* พื้นหลังหน้าเว็บหลักใช้สี rgb(248, 250, 252) */
 body {
     background-color: rgb(248, 250, 252);
     color: #1e293b;
 }
 
-/* กล่องพรีวิวรอบนอกใช้สีฟ้าอ่อนละมุน rgb(217, 234, 253) พร้อมขอบ rgb(188, 204, 220) */
 #a4PreviewContainer {
     background-color: rgb(217, 234, 253);
     padding: 20px;
@@ -18,7 +16,6 @@ body {
     height: 700px;
 }
 
-/* จำลองสัดส่วนกระดาษ A4 */
 #a4Preview {
     background: #ffffff;
     width: 210mm;
