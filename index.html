@@ -4,21 +4,22 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Professional PDF Summarizer - Study Smarter</title>
-    <!-- Tailwind CSS CDN -->
+
     <script src="https://cdn.tailwindcss.com"></script>
-    <!-- PDF.js for reading PDF files -->
+
     <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js"></script>
     <script>
         pdfjsLib.GlobalWorkerOptions.workerSrc = 'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.worker.min.js';
     </script>
-    <!-- html2pdf for downloading PDF -->
+
     <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
-    <!-- Custom Style -->
+
     <link rel="stylesheet" href="style.css">
 </head>
+
+    
 <body class="font-sans antialiased min-h-screen flex flex-col" style="background-color: rgb(248, 250, 252);">
 
-    <!-- Header -->
     <header class="py-3 px-6 flex justify-between items-center shadow-sm border-b" style="background-color: rgb(217, 234, 253); border-color: rgb(188, 204, 220);">
         <div class="flex items-center space-x-3">
             <div class="p-2 rounded-lg shadow-sm" style="background-color: rgb(154, 166, 178); color: white;">
@@ -34,10 +35,9 @@
         </div>
     </header>
 
-    <!-- Main Content -->
+
     <main class="flex-1 max-w-7xl w-full mx-auto p-6 grid grid-cols-1 lg:grid-cols-12 gap-6 items-start">
-        
-        <!-- Left Control Panel -->
+
         <div class="lg:col-span-5 p-6 rounded-2xl shadow-xl space-y-5 border bg-white" style="border-color: rgb(188, 204, 220);">
             <div>
                 <label class="text-xs font-bold uppercase tracking-wider block mb-2" style="color: rgb(154, 166, 178);">01 Upload Your PDF Slide</label>
@@ -64,7 +64,6 @@
             </button>
         </div>
 
-        <!-- Right A4 Preview Panel -->
         <div class="lg:col-span-7 p-6 rounded-2xl shadow-xl flex flex-col border bg-white" style="border-color: rgb(188, 204, 220);">
             <div class="text-xs font-bold uppercase tracking-wider mb-3 flex justify-between items-center" style="color: rgb(154, 166, 178);">
                 <span>A4 Preview (Real-Scale Preview)</span>
@@ -72,7 +71,6 @@
             </div>
             
             <div id="a4PreviewContainer" class="w-full">
-                <!-- A4 Simulated Paper -->
                 <div id="a4Preview">
                     <div class="flex justify-between items-center border-b pb-3 mb-4" style="border-color: rgb(188, 204, 220);">
                         <div>
@@ -84,14 +82,12 @@
                         </div>
                     </div>
 
-                    <!-- AI Summary Content Area -->
                     <div id="aiSummaryContent" class="space-y-2.5 text-xs leading-relaxed text-slate-700">
                         <div class="text-center py-20 text-xs text-slate-400">
                             Upload a PDF file and click "Generate Professional A4 Summary" to start processing.
                         </div>
                     </div>
 
-                    <!-- A4 Footer -->
                     <div class="absolute bottom-6 left-6 right-6 border-t pt-3 flex justify-between items-center text-[10px] font-medium" style="border-color: rgb(188, 204, 220); color: rgb(154, 166, 178);">
                         <span id="previewFooterSource">Source: No file selected</span>
                         <span>Page 1 of 1</span>
@@ -99,7 +95,6 @@
                 </div>
             </div>
 
-            <!-- Download PDF Button -->
             <button id="downloadBtn" class="mt-4 w-full text-white font-semibold py-3 px-4 rounded-xl shadow transition-all text-xs flex items-center justify-center space-x-2" style="background-color: rgb(154, 166, 178);">
                 <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"></path></svg>
                 <span>Download Professional A4 PDF</span>
@@ -107,8 +102,6 @@
         </div>
 
     </main>
-
-    <!-- Custom Script -->
     <script src="script.js"></script>
 </body>
 </html>
