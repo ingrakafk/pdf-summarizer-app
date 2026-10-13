@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Professional PDF Summarizer - Study Smarter</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- PDF.js for reading PDF files -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js"></script>
+    <script>
+        pdfjsLib.GlobalWorkerOptions.workerSrc = 'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.worker.min.js';
+    </script>
+    <!-- html2pdf for downloading PDF -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+    <!-- Custom Style -->
+    <link rel="stylesheet" href="style.css">
+</head>
+<body class="font-sans antialiased min-h-screen flex flex-col" style="background-color: rgb(248, 250, 252);">
+
+    <!-- Header -->
+    <header class="py-3 px-6 flex justify-between items-center shadow-sm border-b" style="background-color: rgb(217, 234, 253); border-color: rgb(188, 204, 220);">
+        <div class="flex items-center space-x-3">
+            <div class="p-2 rounded-lg shadow-sm" style="background-color: rgb(154, 166, 178); color: white;">
+                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path></svg>
+            </div>
+            <div>
+                <span class="text-[10px] tracking-widest font-bold uppercase" style="color: rgb(154, 166, 178);">STUDY SMARTER AI</span>
+                <h1 class="text-sm font-bold text-slate-800">Professional PDF Summarizer</h1>
+            </div>
+        </div>
+        <div class="text-xs px-3 py-1.5 rounded-full border shadow-sm font-medium" style="background-color: white; color: rgb(154, 166, 178); border-color: rgb(188, 204, 220);">
+            Professional 1-Page A4 Summarizer
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="flex-1 max-w-7xl w-full mx-auto p-6 grid grid-cols-1 lg:grid-cols-12 gap-6 items-start">
+        
+        <!-- Left Control Panel -->
+        <div class="lg:col-span-5 p-6 rounded-2xl shadow-xl space-y-5 border bg-white" style="border-color: rgb(188, 204, 220);">
+            <div>
+                <label class="text-xs font-bold uppercase tracking-wider block mb-2" style="color: rgb(154, 166, 178);">01 Upload Your PDF Slide</label>
+                <label class="border-2 border-dashed rounded-xl p-6 flex flex-col items-center justify-center cursor-pointer transition-all group" style="border-color: rgb(188, 204, 220); background-color: rgb(248, 250, 252);">
+                    <svg class="w-8 h-8 mb-2 group-hover:scale-110 transition-transform" style="color: rgb(154, 166, 178);" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M15 13l-3-3m0 0l-3 3m3-3v12"></path></svg>
+                    <span id="fileLabel" class="text-xs font-medium text-center text-slate-600">Click to select study slide PDF</span>
+                    <input type="file" id="pdfFile" accept="application/pdf" class="hidden">
+                </label>
+            </div>
+
+            <div>
+                <label class="text-xs font-bold uppercase tracking-wider block mb-2" style="color: rgb(154, 166, 178);">02 Output Language</label>
+                <select id="outputLang" class="w-full text-xs border rounded-xl p-3 font-medium focus:outline-none text-slate-700" style="background-color: rgb(248, 250, 252); border-color: rgb(188, 204, 220);">
+                    <option value="en">English Only</option>
+                    <option value="th-en">Thai (with English technical terms)</option>
+                    <option value="th">Thai Only</option>
+                </select>
+            </div>
+
+            <button id="generateBtn" class="w-full text-white font-semibold py-3.5 px-4 rounded-xl shadow-lg transition-all flex items-center justify-center space-x-2 text-sm disabled:opacity-50" style="background-color: rgb(154, 166, 178);">
+                <svg id="btnIcon" class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path></svg>
+                <svg id="btnSpinner" class="w-4 h-4 animate-spin hidden" fill="none" viewBox="0 0 24 24"><circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle><path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8v8H4z"></path></svg>
+                <span id="btnText">Generate Professional A4 Summary</span>
+            </button>
+        </div>
+
+        <!-- Right A4 Preview Panel -->
+        <div class="lg:col-span-7 p-6 rounded-2xl shadow-xl flex flex-col border bg-white" style="border-color: rgb(188, 204, 220);">
+            <div class="text-xs font-bold uppercase tracking-wider mb-3 flex justify-between items-center" style="color: rgb(154, 166, 178);">
+                <span>A4 Preview (Real-Scale Preview)</span>
+                <span class="text-[10px] px-2 py-0.5 rounded font-semibold border" style="background-color: rgb(217, 234, 253); color: rgb(154, 166, 178); border-color: rgb(188, 204, 220);">Ready to Print</span>
+            </div>
+            
+            <div id="a4PreviewContainer" class="w-full">
+                <!-- A4 Simulated Paper -->
+                <div id="a4Preview">
+                    <div class="flex justify-between items-center border-b pb-3 mb-4" style="border-color: rgb(188, 204, 220);">
+                        <div>
+                            <span class="text-[10px] font-bold tracking-wider uppercase px-2.5 py-1 rounded-md border" style="background-color: rgb(217, 234, 253); color: rgb(154, 166, 178); border-color: rgb(188, 204, 220);">EXECUTIVE STUDY NOTES</span>
+                            <h1 id="previewTitle" class="text-base font-bold mt-1.5 text-slate-800">Document Title</h1>
+                        </div>
+                        <div class="text-right">
+                            <span class="text-[10px] font-bold px-2.5 py-1 rounded-md border" style="background-color: rgb(248, 250, 252); color: rgb(154, 166, 178); border-color: rgb(188, 204, 220);">A4 1 PAGE</span>
+                        </div>
+                    </div>
+
+                    <!-- AI Summary Content Area -->
+                    <div id="aiSummaryContent" class="space-y-2.5 text-xs leading-relaxed text-slate-700">
+                        <div class="text-center py-20 text-xs text-slate-400">
+                            Upload a PDF file and click "Generate Professional A4 Summary" to start processing.
+                        </div>
+                    </div>
+
+                    <!-- A4 Footer -->
+                    <div class="absolute bottom-6 left-6 right-6 border-t pt-3 flex justify-between items-center text-[10px] font-medium" style="border-color: rgb(188, 204, 220); color: rgb(154, 166, 178);">
+                        <span id="previewFooterSource">Source: No file selected</span>
+                        <span>Page 1 of 1</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Download PDF Button -->
+            <button id="downloadBtn" class="mt-4 w-full text-white font-semibold py-3 px-4 rounded-xl shadow transition-all text-xs flex items-center justify-center space-x-2" style="background-color: rgb(154, 166, 178);">
+                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"></path></svg>
+                <span>Download Professional A4 PDF</span>
+            </button>
+        </div>
+
+    </main>
+
+    <!-- Custom Script -->
+    <script src="script.js"></script>
+</body>
+</html>
